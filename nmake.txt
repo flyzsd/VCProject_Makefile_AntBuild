@@ -1,0 +1,54 @@
+http://msdn.microsoft.com/en-us/library/f35ctcxw.aspx 
+http://manski.net/2011/11/creating-a-dll-project/
+
+
+
+======================================================================================================
+The CL command line uses the following syntax:
+	CL [option...] file... [option | file]... [lib...] [@command-file] [/link link-opt...]
+
+/c  --> (Compile Without Linking)
+/EH --> (Exception Handling Model)
+/Fo --> (Object File Name)
+/I  --> (Additional Include Directories)
+    --> /I[ ]directory
+/MD --> Causes the application to use the multithread-specific and DLL-specific version of the run-time library. 
+/MT --> Causes the application to use the multithread, static version of the run-time library. 
+/Zi --> Produces a program database (PDB) that contains type information and symbolic debugging information for use with the debugger. 
+    --> /Zi does imply /debug
+/D  --> Defines a preprocessing symbol for a source file.
+
+cl.exe /c /EHSc
+
+======================================================================================================
+To run LINK.EXE, use the following command syntax:
+	LINK arguments
+The arguments include options and filenames and can be specified in any order. Options are processed first, then files. Use one or more spaces or tabs to separate arguments.
+
+/DEF 		--> (Specify Module-Definition File)
+     		--> /DEF:filename
+/DLL 		--> (Build a DLL) The /DLL option builds a DLL as the main output file. 
+     		--> There are three methods for specifying exports, listed in recommended order of use: 
+     		--> 	__declspec(dllexport) in the source code
+     		--> 	An EXPORTS statement in a .def file
+     	 	--> 	An /EXPORT specification in a LINK command
+/LIBPATH 	--> (Additional Libpath)
+		--> /LIBPATH:dir
+/OUT		--> (Output File Name)
+		--> /OUT:filename
+/SUBSYSTEM 	--> (Specify Subsystem)
+		--> (Specify Subsystem):CONSOLE  --> Win32 character-mode application. 
+		--> (Specify Subsystem):WINDOWS	 --> Application does not require a console
+
+
+======================================================================================================
+Resource Compiler
+RC [options] script-file
+
+/fo resname     --> RC creates a .RES file named resname using script-file.
+/I              --> Searches the specified directory before searching the directories specified by the INCLUDE environment variable.
+
+======================================================================================================
+Running NMAKE
+NMAKE [option...] [macros...] [targets...] [@commandfile...]
+/F filename	--> Specifies filename as a makefile. 

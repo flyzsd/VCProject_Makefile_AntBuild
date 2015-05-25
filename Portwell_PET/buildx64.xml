@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build" name="Portwell_PET">
+  <property environment="env"/>
+	<property name="VS2010.Path" value="C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\IDE\;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\BIN;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Common7\Tools;C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v3.5;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\VCPackages;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\NETFX 4.0 Tools;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin;"/>
+	<property name="VS2010.INCLUDE" value="C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\INCLUDE;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\include;"/>
+	<property name="VS2010.LIB" value="C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\LIB;C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\lib;"/>
+	<property name="VS2010.LIBPATH" value="C:\Windows\Microsoft.NET\Framework\v4.0.30319;C:\Windows\Microsoft.NET\Framework\v3.5;C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\LIB;"/>
+  <property name="nmake" value="C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\nmake.exe"/>
+  
+	<target name="init">
+		<echo message="Hello, world"/>
+		<echo message="${basedir}"/>
+		<echo message="${env.Path}"/>
+	</target>
+	<target depends="init" name="cleanall">
+		<exec dir="${basedir}" executable="${nmake}" failonerror="true" searchpath="true">
+      <arg value="/f"/>
+      <arg value="makefile.mak"/>
+			<arg value="clean"/>
+			<env key="Path" path="${VS2010.Path};${env.Path}"/>
+			<env key="INCLUDE" value="${VS2010.INCLUDE};${env.INCLUDE}"/>
+			<env key="LIB" value="${VS2010.LIB};${env.LIB}"/>
+			<env key="LIBPATH" path="${VS2010.LIBPATH}"/>
+		</exec>
+	</target>
+	<target depends="cleanall" name="build">
+		<exec dir="${basedir}" executable="${nmake}" failonerror="true">
+      <arg value="/f"/>
+      <arg value="makefile.mak"/>
+			<arg value="all"/>
+			<env key="Path" path="${VS2010.Path};${env.Path}"/>
+			<env key="INCLUDE" value="${VS2010.INCLUDE};${env.INCLUDE}"/>
+			<env key="LIB" value="${VS2010.LIB};${env.LIB}"/>
+			<env key="LIBPATH" path="${VS2010.LIBPATH}"/>
+		</exec>
+	</target>
+</project>
