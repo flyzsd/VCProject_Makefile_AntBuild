@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project basedir="." default="build" name="Portwell_PET">
+  <property environment="env"/>
+	<property name="VS2010.Path" value="C:\Program Files\Microsoft Visual Studio\Common\MSDev98\Bin;C:\Program Files\Microsoft Visual Studio\VC98\Bin;"/>
+	<property name="VS2010.INCLUDE" value="C:\Program Files\Microsoft Visual Studio\VC98\ATL\Include;C:\Program Files\Microsoft Visual Studio\VC98\Include;"/>
+	<property name="VS2010.LIB" value="C:\Program Files\Microsoft Visual Studio\VC98\Lib;"/>
+  	<property name="nmake" value="C:\Program Files\Microsoft Visual Studio\VC98\Bin\nmake.exe"/>
+  
+	<target name="init">
+		<echo message="Hello, world"/>
+		<echo message="${basedir}"/>
+		<echo message="${env.Path}"/>
+	</target>
+	<target depends="init" name="cleanall">
+		<exec dir="${basedir}" executable="${nmake}" failonerror="true" searchpath="true">
+      <arg value="/f"/>
+      <arg value="makefile.mak"/>
+			<arg value="clean"/>
+			<env key="Path" path="${VS2010.Path};${env.Path}"/>
+			<env key="INCLUDE" value="${VS2010.INCLUDE};${env.INCLUDE}"/>
+			<env key="LIB" value="${VS2010.LIB};${env.LIB}"/>
+		</exec>
+	</target>
+	<target depends="cleanall" name="build">
+		<exec dir="${basedir}" executable="${nmake}" failonerror="true">
+      <arg value="/f"/>
+      <arg value="makefile.mak"/>
+			<arg value="all"/>
+			<env key="Path" path="${VS2010.Path};${env.Path}"/>
+			<env key="INCLUDE" value="${VS2010.INCLUDE};${env.INCLUDE}"/>
+			<env key="LIB" value="${VS2010.LIB};${env.LIB}"/>
+		</exec>
+	</target>
+</project>
